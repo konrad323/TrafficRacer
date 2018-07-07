@@ -115,7 +115,8 @@ public class GameplayChooseState extends GameState
 		if(key == KeyEvent.VK_ENTER)
 		{	
 			gsm.setState(GameStateManager.LEVELSTATE);
-			Menu.stopMusic();
+			if(Menu.if_music)
+				Menu.stopMusic();
 		}
 		
 		else if(key == KeyEvent.VK_UP)

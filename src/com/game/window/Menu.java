@@ -49,6 +49,7 @@ public class Menu extends JPanel implements ActionListener, KeyListener
 	
 	public Timer timer;
 	static Clip clip;
+	public static boolean if_music = false;
 	
 	//image
 	private BufferedImage image;
@@ -85,7 +86,13 @@ public class Menu extends JPanel implements ActionListener, KeyListener
 		
 		timer = new Timer(4, this);
 		timer.start();
-		playSound("resources/Music/music.wav");
+		
+		File file = new File("resources/Music/music.wav");
+		if(file.exists())
+		{
+			if_music = true;
+			playSound(file.getPath());
+		}
 	}
 
 	public void keyPressed(KeyEvent key) 
@@ -278,7 +285,7 @@ public class Menu extends JPanel implements ActionListener, KeyListener
 		update();
 		drawToScreen();
 		
-		if(gsm.getCurrentState() == 0 && !clip.isActive()) 
+		if(if_music && gsm.getCurrentState() == 0 && !clip.isActive()) 
 			playSound("resources/Music/music.wav");
 	}
 	
