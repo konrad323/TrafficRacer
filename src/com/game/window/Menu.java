@@ -85,7 +85,7 @@ public class Menu extends JPanel implements ActionListener, KeyListener
 		
 		timer = new Timer(4, this);
 		timer.start();
-		playSound("D:\\workspace\\TrafficRacer\\resources\\Music\\Tokyo Drift.wav");
+		playSound("resources/Music/music.wav");
 	}
 
 	public void keyPressed(KeyEvent key) 
@@ -279,7 +279,7 @@ public class Menu extends JPanel implements ActionListener, KeyListener
 		drawToScreen();
 		
 		if(gsm.getCurrentState() == 0 && !clip.isActive()) 
-			playSound("D:\\workspace\\TrafficRacer\\resources\\Music\\Tokyo Drift.wav");
+			playSound("resources/Music/music.wav");
 	}
 	
 	public static void stopMusic()
