@@ -59,21 +59,21 @@ public abstract class Functions
 		{
 			int pol = generator.nextInt(15);
 			
-			if(pol == 0) c[i] = new Item("/Sprites/Enemies/car1.png");
-			else if(pol == 1) c[i] = new Item("/Sprites/Enemies/car2.png");
-			else if(pol == 2) c[i] = new Item("/Sprites/Enemies/car3.png");
-			else if(pol == 3) c[i] = new Item("/Sprites/Enemies/car4.png");
-			else if(pol == 4) c[i] = new Item("/Sprites/Enemies/car5.png");
-			else if(pol == 5) c[i] = new Item("/Sprites/Enemies/car6.png");
-			else if(pol == 6) c[i] = new Item("/Sprites/Enemies/car7.png");
-			else if(pol == 7) c[i] = new Item("/Sprites/Enemies/car8.png");
-			else if(pol == 8) c[i] = new Item("/Sprites/Enemies/car9.png");
-			else if(pol == 9) c[i] = new Item("/Sprites/Enemies/car10.png");
-			else if(pol == 10) c[i] = new Item("/Sprites/Enemies/car11.png");
-			else if(pol == 11) c[i] = new Item("/Sprites/Enemies/car12.png");
-			else if(pol == 12) c[i] = new Item("/Sprites/Enemies/truck1.png");
-			else if(pol == 13) c[i] = new Item("/Sprites/Enemies/truck2.png");
-			else c[i] = new Item("/Sprites/Enemies/bus.png");
+			if(pol == 0) c[i] = new Item("resources/sprites/enemies/car1.png");
+			else if(pol == 1) c[i] = new Item("resources/sprites/enemies/car2.png");
+			else if(pol == 2) c[i] = new Item("resources/sprites/enemies/car3.png");
+			else if(pol == 3) c[i] = new Item("resources/sprites/enemies/car4.png");
+			else if(pol == 4) c[i] = new Item("resources/sprites/enemies/car5.png");
+			else if(pol == 5) c[i] = new Item("resources/sprites/enemies/car6.png");
+			else if(pol == 6) c[i] = new Item("resources/sprites/enemies/car7.png");
+			else if(pol == 7) c[i] = new Item("resources/sprites/enemies/car8.png");
+			else if(pol == 8) c[i] = new Item("resources/sprites/enemies/car9.png");
+			else if(pol == 9) c[i] = new Item("resources/sprites/enemies/car10.png");
+			else if(pol == 10) c[i] = new Item("resources/sprites/enemies/car11.png");
+			else if(pol == 11) c[i] = new Item("resources/sprites/enemies/car12.png");
+			else if(pol == 12) c[i] = new Item("resources/sprites/enemies/truck1.png");
+			else if(pol == 13) c[i] = new Item("resources/sprites/enemies/truck2.png");
+			else c[i] = new Item("resources/sprites/enemies/bus.png");
 		}	
 	}
 	
@@ -101,10 +101,10 @@ public abstract class Functions
 		{
 			int pol = generator.nextInt(4);
 			
-			if(pol == 0) o[i] = new Item("/Sprites/Enemies/rock1.png");
-			else if(pol == 1) o[i] = new Item("/Sprites/Enemies/rock2.png");
-			else if(pol == 2) o[i] = new Item("/Sprites/Enemies/tree1.png");
-			else o[i] = new Item("/Sprites/Enemies/tree2.png");
+			if(pol == 0) o[i] = new Item("resources/sprites/enemies/rock1.png");
+			else if(pol == 1) o[i] = new Item("resources/sprites/enemies/rock2.png");
+			else if(pol == 2) o[i] = new Item("resources/sprites/enemies/tree1.png");
+			else o[i] = new Item("resources/sprites/enemies/tree2.png");
 		}
 	}
 	

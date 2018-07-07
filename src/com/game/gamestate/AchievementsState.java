@@ -28,7 +28,7 @@ public class AchievementsState extends GameState
 		
 		try
 		{
-			bg = new Background("/Backgrounds/Achievements.jpg", 1);
+			bg = new Background("resources/backgrounds/Achievements.jpg", 1);
 			
 			font = new Font("Arial", Font.BOLD, 14);
 			
@@ -44,7 +44,7 @@ public class AchievementsState extends GameState
 		
 		for(int i = 0; i < medal.length; i++)
 		{
-			medal[i] = new Item("/Sprites/Achievements/medal.jpg");
+			medal[i] = new Item("resources/sprites/achievements/medal.jpg");
 		}
 	
 		setMedalsPosition();

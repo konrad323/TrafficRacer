@@ -2,6 +2,7 @@ package com.game.images;
 
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
+import java.io.File;
 
 import javax.imageio.ImageIO;
 
@@ -22,7 +23,7 @@ public class Background
 	{
 		try
 		{
-			image = ImageIO.read(getClass().getResourceAsStream(s));
+			image = ImageIO.read(new File(s));
 			moveScale = ms;
 			
 		}catch (Exception e)

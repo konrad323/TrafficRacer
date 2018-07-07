@@ -27,7 +27,7 @@ public class DifficultyChooseState extends GameState
 		
 		try
 		{
-			bg = new Background("/Backgrounds/DifficultyChoose.png", 1);
+			bg = new Background("resources/backgrounds/DifficultyChoose.png", 1);
 			
 			titleColor = new Color(128, 0, 0);
 			titleFont = new Font("Sans Serif", Font.BOLD, 28);

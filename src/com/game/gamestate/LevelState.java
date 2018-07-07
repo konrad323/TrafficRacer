@@ -111,7 +111,7 @@ public class LevelState extends GameState implements ActionListener
 				if(!wasCollision)
 				{
 					clip.stop();
-					playSound("D:\\workspace\\TrafficRacer\\resources\\Music\\Collision.wav");
+					playSound("resources/music/collision.wav");
 					wasCollision = true;
 					ifSoundDelayed = true;
 				}
@@ -129,7 +129,7 @@ public class LevelState extends GameState implements ActionListener
 				if(!wasCollision)
 				{
 					clip.stop();
-					playSound("D:\\workspace\\TrafficRacer\\resources\\Music\\Collision.wav");
+					playSound("resources/music/collision.wav");
 					wasCollision = true;
 				}
 			}
@@ -210,7 +210,7 @@ public class LevelState extends GameState implements ActionListener
 		}
 		
 		if(zaczeto && !lose && !clip.isActive())
-			playSound("D:\\workspace\\TrafficRacer\\resources\\Music\\Car Driving.wav");
+			playSound("resources/music/car driving.wav");
 		
 		if(lose && !ifSoundDelayed && !clip.isActive())
 		{
@@ -283,7 +283,7 @@ public class LevelState extends GameState implements ActionListener
 			if(GameplayChooseState.getCurrentChoice() == 1) 
 				timer1.start();
 			
-			playSound("D:\\workspace\\TrafficRacer\\resources\\Music\\Car Driving.wav");
+			playSound("resources/music/car driving.wav");
 		}
 		
 		else if(key == KeyEvent.VK_ENTER && optionsShowed)
@@ -323,7 +323,7 @@ public class LevelState extends GameState implements ActionListener
 	@Override
 	public void init() 
 	{	
-		bg = new Background("/Backgrounds/Game.png", 0.1);
+		bg = new Background("resources/backgrounds/game.png", 0.1);
 		
 		timer1 = new Timer(1000, this);
 		timer2 = new Timer(1000, this);
@@ -337,10 +337,10 @@ public class LevelState extends GameState implements ActionListener
 	public void initGame()
 	{
 		
-		if(CarChooseState.getCurrentChoice() == 0) car = new Item("/Sprites/Player/car.png");
-		else if(CarChooseState.getCurrentChoice() == 1) car = new Item("/Sprites/Player/dodge.png");
-		else if(CarChooseState.getCurrentChoice() == 2) car = new Item("/Sprites/Player/aston.png");
-		else if(CarChooseState.getCurrentChoice() == 3) car = new Item("/Sprites/Player/jeep.png");
+		if(CarChooseState.getCurrentChoice() == 0) car = new Item("resources/sprites/player/car.png");
+		else if(CarChooseState.getCurrentChoice() == 1) car = new Item("resources/sprites/player/dodge.png");
+		else if(CarChooseState.getCurrentChoice() == 2) car = new Item("resources/sprites/player/aston.png");
+		else if(CarChooseState.getCurrentChoice() == 3) car = new Item("resources/sprites/player/jeep.png");
 		
 		o[0].setPosition(2, -100);
 		o[1].setPosition(327, -150);

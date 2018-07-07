@@ -2,6 +2,7 @@ package com.game.images;
 
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
+import java.io.File;
 
 import javax.imageio.ImageIO;
 
@@ -18,7 +19,7 @@ public class Item
 	{
 		try
 		{
-			image = ImageIO.read(getClass().getResourceAsStream(s));
+			image = ImageIO.read(new File(s));
 			
 			this.x = 50;
 			this.y = -100;

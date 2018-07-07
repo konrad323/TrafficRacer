@@ -5,6 +5,7 @@ import java.awt.Font;
 import java.awt.Graphics2D;
 import java.awt.event.KeyEvent;
 import java.awt.image.BufferedImage;
+import java.io.File;
 import java.io.IOException;
 
 import javax.imageio.ImageIO;
@@ -34,7 +35,7 @@ public class GameplayChooseState extends GameState
 		
 		try
 		{
-			bg = new Background("/Backgrounds/GameplayChoose.png", 1);
+			bg = new Background("resources/backgrounds/gameplayChoose.png", 1);
 			
 			titleColor = new Color(128, 0, 0);
 			titleFont = new Font("Sans Serif", Font.BOLD, 28);
@@ -51,8 +52,8 @@ public class GameplayChooseState extends GameState
 	{
 		try 
 		{
-			normal = ImageIO.read(getClass().getResourceAsStream("/Backgrounds/NormalGameplay.png"));
-			time = ImageIO.read(getClass().getResourceAsStream("/Backgrounds/TimeGameplay.png"));
+			normal = ImageIO.read(new File("resources/backgrounds/normalGameplay.png"));
+			time = ImageIO.read(new File("resources/backgrounds/timeGameplay.png"));
 			
 		} catch (IOException e) 
 		{

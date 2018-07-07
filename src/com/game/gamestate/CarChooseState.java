@@ -30,7 +30,7 @@ public class CarChooseState extends GameState
 		
 		try
 		{
-			bg = new Background("/Backgrounds/CarChoose.png", 1);
+			bg = new Background("resources/backgrounds/CarChoose.png", 1);
 			
 			titleColor = new Color(128, 0, 0);
 			titleFont = new Font("Sans Serif", Font.BOLD, 28);
@@ -47,16 +47,16 @@ public class CarChooseState extends GameState
 	{
 		currentChoice = 0;
 		
-		car[0] = new Item("/Sprites/Player/car.png");
+		car[0] = new Item("resources/sprites/player/car.png");
 		car[0].setPosition(70, 50);
 		
-		car[1] = new Item("/Sprites/Player/dodge.png");
+		car[1] = new Item("resources/sprites/player/dodge.png");
 		car[1].setPosition(270, 50);
 		
-		car[2] = new Item("/Sprites/Player/aston.png");
+		car[2] = new Item("resources/sprites/player/aston.png");
 		car[2].setPosition(70, 170);
 		
-		car[3] = new Item("/Sprites/Player/jeep.png");
+		car[3] = new Item("resources/sprites/player/jeep.png");
 		car[3].setPosition(270, 170);
 	}
 

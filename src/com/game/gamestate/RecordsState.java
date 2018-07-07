@@ -25,7 +25,7 @@ public class RecordsState extends GameState
 		
 		try
 		{
-			bg = new Background("/Backgrounds/Records.jpg", 1);
+			bg = new Background("resources/backgrounds/records.jpg", 1);
 			bg.setVector(0, -0.15);
 			
 			font = new Font("Arial", Font.BOLD, 14);

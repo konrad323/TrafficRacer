@@ -27,7 +27,7 @@ public class MenuState extends GameState
 		
 		try
 		{
-			bg = new Background("/Backgrounds/Menu.jpg", 1);
+			bg = new Background("resources/backgrounds/menu.jpg", 1);
 			bg.setVector(0, -0.15);
 			
 			titleColor = new Color(128, 0, 0);
