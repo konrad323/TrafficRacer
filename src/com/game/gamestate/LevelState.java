@@ -29,24 +29,14 @@ public class LevelState extends GameState implements ActionListener
 	private final Item[] c = new Item[6];
 	private final Item[] o = new Item[2];
 	
-	Timer timer1; // timer do rozgrywki time gameplay
-	Timer timer2; // timer do wyswietlania zdobytych punktow
+	Timer timer1, timer2; // timer1 do rozgrywki time gameplay, timer2 do wyswietlania zdobytych punktow
 	Clip clip;
 	private static final String PATH = "resources/sprites/player/";
 	
-	private static int currentScore;
-	private static int previousScore;
-	private static int time;
+	private static int currentScore, previousScore, time;
 	
-	private boolean zaczeto;
-	private boolean lose;
-	private boolean optionsShowed;
-	private boolean one_arrived;
-	private boolean left, right;
-	private boolean changeTime;
-	private boolean pointsReceived;
-	private boolean firstReceivedPoints;
-	private boolean wasCollision;
+	private boolean zaczeto, lose, optionsShowed, one_arrived, left, right, changeTime;
+	private boolean pointsReceived, firstReceivedPoints, wasCollision;
 	private boolean ifSoundDelayed; // aby sie pozbyc opoznienia spowodowanego dzialaniem clip.isActive()
 	
 	private int currentChoice;
@@ -62,11 +52,8 @@ public class LevelState extends GameState implements ActionListener
 	{
 		bg.draw(g);
 	
-		for(int i = 0; i < 6; i++)
-			c[i].draw(g);
-		
-		for(int i = 0; i < 2; i++)
-			o[i].draw(g);
+		for(int i = 0; i < 6; i++) c[i].draw(g);
+		for(int i = 0; i < 2; i++) o[i].draw(g);
 		
 		car.draw(g);
 		
@@ -104,15 +91,13 @@ public class LevelState extends GameState implements ActionListener
 			if(Functions.collision(car, c[i]))
 			{
 				lose = true;
-				left = false;
-				right = false;
+				left = right = false;
 				
 				if(!wasCollision)
 				{
 					clip.stop();
 					playSound("resources/music/collision.wav");
-					wasCollision = true;
-					ifSoundDelayed = true;
+					wasCollision = ifSoundDelayed = true;
 				}
 			}
 		}
@@ -122,14 +107,13 @@ public class LevelState extends GameState implements ActionListener
 			if(Functions.collision(car, o[i]))
 			{
 				lose = true;
-				left = false;
-				right = false;
+				left = right = false;
 				
 				if(!wasCollision)
 				{
 					clip.stop();
 					playSound("resources/music/collision.wav");
-					wasCollision = true;
+					wasCollision = ifSoundDelayed = true;
 				}
 			}
 		}
@@ -138,15 +122,13 @@ public class LevelState extends GameState implements ActionListener
 		g.setFont(new Font("Verdana", Font.BOLD, 18));
 		g.drawString("Points " + currentScore, 150, 20);
 		
-		if(!zaczeto)
-			g.drawString("Click up to start", 113, 100);
+		if(!zaczeto) g.drawString("Click up to start", 113, 100);
 		
 		if(one_arrived && (c[0].getY() > Menu.HEIGHT - 140 || c[1].getY() > Menu.HEIGHT - 140 || c[2].getY() > Menu.HEIGHT - 140))
 		{
 			Functions.generateCars(c, 3, 5);
 			Functions.generateCarsPosition(c, 3, 5);
 			Functions.setCarLevelVectors(c, 3, 5, DifficultyChooseState.getCurrentChoice());
-			
 			one_arrived = false;
 		}
 		
@@ -154,8 +136,7 @@ public class LevelState extends GameState implements ActionListener
 		{
 			Functions.generateCars(c, 0, 2);
 			Functions.generateCarsPosition(c, 0, 2);
-			Functions.setCarLevelVectors(c, 0, 2, DifficultyChooseState.getCurrentChoice());
-			
+			Functions.setCarLevelVectors(c, 0, 2, DifficultyChooseState.getCurrentChoice());	
 			one_arrived = true;
 		}
 		
@@ -175,11 +156,8 @@ public class LevelState extends GameState implements ActionListener
 		
 		if(lose)
 		{
-			for(int i = 0; i < 6; i++)
-				c[i].setVector(0, 0);
-			
-			for(int i = 0; i < 2; i++)
-				o[i].setVector(0, 0);
+			for(int i = 0; i < 6; i++) c[i].setVector(0, 0);
+			for(int i = 0; i < 2; i++) o[i].setVector(0, 0);
 			
 			g.drawString("GAME OVER", 130, 80);
 			
@@ -220,10 +198,8 @@ public class LevelState extends GameState implements ActionListener
 			
 			for(int i = 0; i < options.length; i++)
 			{
-				if(i == currentChoice)
-					g.setColor(Color.RED);
-				else
-					g.setColor(Color.BLACK);
+				if(i == currentChoice) g.setColor(Color.RED);
+				else g.setColor(Color.BLACK);
 				
 				if(i == 0) g.drawString(options[0], 145, 120);
 				else g.drawString(options[1], 170, 135);
@@ -339,8 +315,7 @@ public class LevelState extends GameState implements ActionListener
 		
 		car.setPosition(Menu.WIDTH / 2 - car.getWidth() / 2, Menu.HEIGHT - car.getHeight() - 50);		
 		
-		currentScore = 0;
-		previousScore = 0;
+		currentScore = previousScore = 0;
 		time = 60;
 		
 		try 
@@ -366,8 +341,7 @@ public class LevelState extends GameState implements ActionListener
 	{
 		Object source = e.getSource();
 		
-		if(source == timer1)
-			changeTime = true;
+		if(source == timer1) changeTime = true;
 		else
 		{
 			previousScore = currentScore;

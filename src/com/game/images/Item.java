@@ -10,10 +10,8 @@ public class Item
 {
 	private  BufferedImage image;
 	
-	private double x;
-	private double y;
-	private double dx;
-	private double dy;
+	private double x, y;
+	private double dx, dy;
 	
 	public Item(String s)
 	{
@@ -23,18 +21,16 @@ public class Item
 			
 			this.x = 50;
 			this.y = -100;
-			this.dx = 0;
-			this.dy = 0;
-			
-		}catch (Exception e)
+			this.dx = this.dy = 0;
+		}
+		catch(Exception e)
 		{
 			e.printStackTrace();
 		}
 	}
 	
 	public void setPosition(double x, double y)
-	{
-		
+	{	
 		this.x = x;
 		this.y = y;
 	}
@@ -54,11 +50,6 @@ public class Item
 	public void draw(Graphics2D g)
 	{
 		g.drawImage(image, (int) x, (int) y, null);
-	}
-	
-	public void setBackground()
-	{
-		
 	}
 	
 	public double getX()

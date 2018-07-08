@@ -12,12 +12,10 @@ public class MenuState extends GameState
 	private Background bg;
 	
 	private int currentChoice;
-	
 	private final String[] options = {"Start", "Records", "Quit"};
 	
 	private Color titleColor;
-	private Font titleFont; 
-	private Font font;
+	private Font titleFont, font;
 	
 	public MenuState(GameStateManager gsm)
 	{
@@ -31,8 +29,7 @@ public class MenuState extends GameState
 			
 			titleColor = new Color(128, 0, 0);
 			titleFont = new Font("Sans Serif", Font.BOLD, 28);
-			font = new Font("Arial", Font.BOLD, 14);
-			
+			font = new Font("Arial", Font.BOLD, 14);	
 		}
 		catch(Exception e)
 		{
@@ -61,10 +58,8 @@ public class MenuState extends GameState
 		
 		for(int i = 0; i < options.length; i++)
 		{
-			if(i == currentChoice)
-				g.setColor(Color.RED);
-			else
-				g.setColor(Color.BLACK);
+			if(i == currentChoice) g.setColor(Color.RED);
+			else g.setColor(Color.BLACK);
 			
 			if(i == 0) g.drawString(options[0], 160, 140);
 			else if(i == 1) g.drawString(options[1], 148, 155);

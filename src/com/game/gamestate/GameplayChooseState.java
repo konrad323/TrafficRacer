@@ -21,13 +21,10 @@ public class GameplayChooseState extends GameState
 	
 	private static final String PATH = "resources/backgrounds/";
 	private static int currentChoice;
-	
 	private final String[] options = {"Normal", "With time"};
 	
 	private Color titleColor;
-	private Font titleFont;
-	
-	private Font font;
+	private Font titleFont, font;
 	
 	public GameplayChooseState(GameStateManager gsm)
 	{
@@ -60,6 +57,7 @@ public class GameplayChooseState extends GameState
 		{
 			e.printStackTrace();
 		}
+		
 		currentChoice = 0;
 	}
 
@@ -78,10 +76,8 @@ public class GameplayChooseState extends GameState
 				
 		for(int i = 0; i < options.length; i++)
 		{
-			if(i == currentChoice)
-				g.setColor(Color.RED);	
-			else
-				g.setColor(Color.BLACK);
+			if(i == currentChoice) g.setColor(Color.RED);	
+			else g.setColor(Color.BLACK);
 			
 			if(i == 0) g.drawString(options[0], 155, 140);
 			else g.drawString(options[1], 147, 160);

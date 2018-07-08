@@ -55,22 +55,10 @@ public abstract class Functions
 	{
 		for(int i = from; i <= to; i++)
 		{
-			int pol = generator.nextInt(15);
-			
-			if(pol == 0) c[i] = new Item(PATH + "car1.png");
-			else if(pol == 1) c[i] = new Item(PATH + "car2.png");
-			else if(pol == 2) c[i] = new Item(PATH + "car3.png");
-			else if(pol == 3) c[i] = new Item(PATH + "car4.png");
-			else if(pol == 4) c[i] = new Item(PATH + "car5.png");
-			else if(pol == 5) c[i] = new Item(PATH + "car6.png");
-			else if(pol == 6) c[i] = new Item(PATH + "car7.png");
-			else if(pol == 7) c[i] = new Item(PATH + "car8.png");
-			else if(pol == 8) c[i] = new Item(PATH + "car9.png");
-			else if(pol == 9) c[i] = new Item(PATH + "car10.png");
-			else if(pol == 10) c[i] = new Item(PATH + "car11.png");
-			else if(pol == 11) c[i] = new Item(PATH + "car12.png");
-			else if(pol == 12) c[i] = new Item(PATH + "truck1.png");
-			else if(pol == 13) c[i] = new Item(PATH + "truck2.png");
+			int pol = generator.nextInt(15) + 1;
+			if(pol > 0 && pol < 13) c[i] = new Item(PATH + "car" + Integer.toString(pol) + ".png");
+			else if(pol == 13) c[i] = new Item(PATH + "truck1.png");
+			else if(pol == 14) c[i] = new Item(PATH + "truck2.png");
 			else c[i] = new Item(PATH + "bus.png");
 		}	
 	}
@@ -81,7 +69,6 @@ public abstract class Functions
 		int pol2 = generator.nextInt(80) + 72;
 		
 		c[from].setPosition(pol1, -pol2);
-		
 		int suma = pol1;
 		
 		for(int i = from + 1; i <= to; i++)
@@ -119,12 +106,9 @@ public abstract class Functions
 	{
 		for(int i = from; i <= to; i++)
 		{
-			if(level == 0)
-				c[i].setVector(0, 0.8);
-			else if(level == 1)
-				c[i].setVector(0, 0.95);
-			else
-				c[i].setVector(0, 1.1);
+			if(level == 0) c[i].setVector(0, 0.8);
+			else if(level == 1) c[i].setVector(0, 0.95);
+			else c[i].setVector(0, 1.1);
 		}
 	}
 	
@@ -132,12 +116,9 @@ public abstract class Functions
 	{
 		for(int i = from; i <= to; i++)
 		{
-			if(level == 0)
-				o[i].setVector(0, 1.6);
-			else if(level == 1)
-				o[i].setVector(0, 1.9);
-			else
-				o[i].setVector(0, 2.2);
+			if(level == 0) o[i].setVector(0, 1.6);
+			else if(level == 1) o[i].setVector(0, 1.9);
+			else o[i].setVector(0, 2.2);
 		}
 	}
 }

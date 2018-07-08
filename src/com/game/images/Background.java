@@ -12,11 +12,8 @@ public class Background
 {
 	private BufferedImage image;
 	
-	private double x;
-	private double y;
-	private double dx;
-	private double dy;
-	
+	private double x, y;
+	private double dx, dy;
 	private double moveScale;
 	
 	public Background(String s, double ms)
@@ -24,9 +21,9 @@ public class Background
 		try
 		{
 			image = ImageIO.read(new File(s));
-			moveScale = ms;
-			
-		}catch (Exception e)
+			moveScale = ms;	
+		}
+		catch(Exception e)
 		{
 			e.printStackTrace();
 		}
@@ -55,12 +52,8 @@ public class Background
 		g.drawImage(image, (int) x, (int) y, null);
 		
 		if(y < 0)
-		{
 			g.drawImage(image, (int) x, (int) y + Menu.HEIGHT, null);
-		}
 		if(y > 0)
-		{
 			g.drawImage(image, (int) x, (int) y - Menu.HEIGHT, null);
-		}
 	}
 }

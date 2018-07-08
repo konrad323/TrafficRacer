@@ -13,15 +13,12 @@ public class CarChooseState extends GameState
 	private Background bg;
 	
 	private Item[] car = new Item[4];
-	
 	private static final String PATH = "resources/sprites/player/";
 	private static int currentChoice;
-	
 	private final String[] options = {"Lamborghini Murcielago", "Dodge Challenger", "Aston Martin DB9", "Military Jeep"};
 	
 	private Color titleColor;
-	private Font titleFont;
-	private Font font;
+	private Font titleFont, font;
 	
 	public CarChooseState(GameStateManager gsm)
 	{
@@ -35,7 +32,6 @@ public class CarChooseState extends GameState
 			titleColor = new Color(128, 0, 0);
 			titleFont = new Font("Sans Serif", Font.BOLD, 28);
 			font = new Font("Arial", Font.BOLD, 14);
-			
 		}
 		catch(Exception e)
 		{
@@ -69,21 +65,17 @@ public class CarChooseState extends GameState
 	{
 		bg.draw(g);	
 		
-		for(int i = 0; i < 4; i++)
-			car[i].draw(g);
+		for(int i = 0; i < 4; i++) car[i].draw(g);
 		
 		g.setColor(titleColor);
 		g.setFont(titleFont);
 		g.drawString("Choose a car", 95, 30);
-				
 		g.setFont(font);
 				
 		for(int i = 0; i < options.length; i++)
 		{
-			if(i == currentChoice)
-				g.setColor(Color.RED);
-			else
-				g.setColor(Color.BLACK);
+			if(i == currentChoice) g.setColor(Color.RED);
+			else g.setColor(Color.BLACK);
 					
 			if(i == 0) g.drawString(options[0], 2, 130);
 			else if(i == 1) g.drawString(options[1], 220, 130);

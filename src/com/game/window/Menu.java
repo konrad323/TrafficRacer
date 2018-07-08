@@ -27,7 +27,6 @@ public class Menu extends JPanel implements ActionListener, KeyListener
 {
 	private static final long serialVersionUID = -284968577068930683L;
 
-	//dimensions
 	public static final int WIDTH = 370;
 	public static final int HEIGHT = 280;
 	public static final int SCALE = 2;
@@ -54,8 +53,7 @@ public class Menu extends JPanel implements ActionListener, KeyListener
 		
 		try 
 		{
-			RecordsManagement.setData();
-			
+			RecordsManagement.setData();			
 		} 
 		catch(FileNotFoundException e) 
 		{
@@ -301,5 +299,4 @@ public class Menu extends JPanel implements ActionListener, KeyListener
 		    e.printStackTrace();
 		}
 	}
-
 }

@@ -53,14 +53,8 @@ public class RecordsState extends GameState
 		
 		for(int i = 0; i < options.length; i++)
 		{
-			if(i == currentChoice)
-			{
-				g.setColor(Color.RED);
-			}
-			else
-			{
-				g.setColor(Color.BLACK);
-			}
+			if(i == currentChoice) g.setColor(Color.RED);
+			else g.setColor(Color.BLACK);
 	
 			if(i == 0) g.drawString(options[0], 130, 140);
 			else g.drawString(options[1], 160, 155);
@@ -88,7 +82,6 @@ public class RecordsState extends GameState
 	{
 		if(currentChoice == 0)
 			gsm.setState(GameStateManager.ACHIEVEMENTSSTATE);
-		
 		else if(currentChoice == 1)
 			gsm.setState(GameStateManager.MENUSTATE);
 	}

@@ -14,11 +14,8 @@ public class AchievementsState extends GameState
 	private Background bg;
 	
 	private final String option = "Back";
-	
 	private final Item[] medal = new Item[8];
-	
 	private static int currentChoice;
-	
 	private Font font;
 	
 	public AchievementsState(GameStateManager gsm)
@@ -29,9 +26,7 @@ public class AchievementsState extends GameState
 		try
 		{
 			bg = new Background("resources/backgrounds/Achievements.jpg", 1);
-			
 			font = new Font("Arial", Font.BOLD, 14);
-			
 		}
 		catch(Exception e)
 		{
@@ -42,12 +37,9 @@ public class AchievementsState extends GameState
 	public void init()
 	{	
 		currentChoice = 0;
-		
 		for(int i = 0; i < medal.length; i++)
-		{
 			medal[i] = new Item("resources/sprites/achievements/medal.jpg");
-		}
-	
+		
 		setMedalsPosition();
 	}
 	
@@ -61,15 +53,12 @@ public class AchievementsState extends GameState
 		bg.draw(g);	
 		g.setFont(font);
 		
-		for(int i = 0; i < medal.length; i++)
-			medal[i].draw(g);
+		for(int i = 0; i < medal.length; i++) medal[i].draw(g);
 		
 		for(int i = 0; i < 9; i++)
 		{
-			if(i == currentChoice)
-				g.setColor(Color.RED);
-			else
-				g.setColor(Color.BLACK);
+			if(i == currentChoice) g.setColor(Color.RED);
+			else g.setColor(Color.BLACK);
 				
 			if(i == 0) g.drawString(option, 160, 265);
 			else if(i == 1) g.drawString("1", 41, 85);
@@ -127,16 +116,22 @@ public class AchievementsState extends GameState
 		}
 		else if(key == KeyEvent.VK_RIGHT)
 		{
-			if(currentChoice == 0) return;
-			else if(currentChoice == 4 || currentChoice == 8) return;
-			else currentChoice++;
+			if(currentChoice == 0) 
+				return;
+			else if(currentChoice == 4 || currentChoice == 8) 
+				return;
+			else 
+				currentChoice++;
 		}
 		
 		else if(key == KeyEvent.VK_LEFT)
 		{
-			if(currentChoice == 0) return;
-			else if(currentChoice == 1 || currentChoice == 5) return;
-			else currentChoice--;
+			if(currentChoice == 0) 
+				return;
+			else if(currentChoice == 1 || currentChoice == 5) 
+				return;
+			else 
+				currentChoice--;
 		}
 	}
 	
