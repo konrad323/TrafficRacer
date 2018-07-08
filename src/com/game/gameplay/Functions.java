@@ -9,6 +9,7 @@ import com.game.images.Item;
 public abstract class Functions 
 {
 	private static Random generator = new Random();
+	private static final String PATH = "resources/sprites/enemies/";
 	
 	public static boolean collision(Item car, Item c1) // transparency color number = 16777215
 	{
@@ -25,22 +26,19 @@ public abstract class Functions
 					if(r2.contains((int) (car.getX() + i), (int)(car.getY() + j)))
 					{
 						if (c1.getPixelRGB((int) (car.getX() + i - c1.getX()), 
-								(int)(car.getY() + j - c1.getY())) != 16777215) return true;
+						    (int)(car.getY() + j - c1.getY())) != 16777215) return true;
 					}
-					
 				}
-	
 			}
 		}
-		
 		return false;
 	}
 	
 	public static int scoreCounter(Item car, Item c, int currentScore)
 	{
 		if(car.getY() == (int) c.getY() && ((car.getX() < c.getX() && c.getX() - car.getX() - car.getWidth() < 4)
-				|| (car.getX() > c.getX() && car.getX() - c.getX() - c.getWidth() < 4)))
-					currentScore += 100;
+			|| (car.getX() > c.getX() && car.getX() - c.getX() - c.getWidth() < 4)))
+				currentScore += 100;
 		
 		else if(car.getY() == (int) c.getY() && ((car.getX() < c.getX() && c.getX() - car.getX() - car.getWidth() < 7)
 				|| (car.getX() > c.getX() && car.getX() - c.getX() - c.getWidth() < 7)))
@@ -59,21 +57,21 @@ public abstract class Functions
 		{
 			int pol = generator.nextInt(15);
 			
-			if(pol == 0) c[i] = new Item("resources/sprites/enemies/car1.png");
-			else if(pol == 1) c[i] = new Item("resources/sprites/enemies/car2.png");
-			else if(pol == 2) c[i] = new Item("resources/sprites/enemies/car3.png");
-			else if(pol == 3) c[i] = new Item("resources/sprites/enemies/car4.png");
-			else if(pol == 4) c[i] = new Item("resources/sprites/enemies/car5.png");
-			else if(pol == 5) c[i] = new Item("resources/sprites/enemies/car6.png");
-			else if(pol == 6) c[i] = new Item("resources/sprites/enemies/car7.png");
-			else if(pol == 7) c[i] = new Item("resources/sprites/enemies/car8.png");
-			else if(pol == 8) c[i] = new Item("resources/sprites/enemies/car9.png");
-			else if(pol == 9) c[i] = new Item("resources/sprites/enemies/car10.png");
-			else if(pol == 10) c[i] = new Item("resources/sprites/enemies/car11.png");
-			else if(pol == 11) c[i] = new Item("resources/sprites/enemies/car12.png");
-			else if(pol == 12) c[i] = new Item("resources/sprites/enemies/truck1.png");
-			else if(pol == 13) c[i] = new Item("resources/sprites/enemies/truck2.png");
-			else c[i] = new Item("resources/sprites/enemies/bus.png");
+			if(pol == 0) c[i] = new Item(PATH + "car1.png");
+			else if(pol == 1) c[i] = new Item(PATH + "car2.png");
+			else if(pol == 2) c[i] = new Item(PATH + "car3.png");
+			else if(pol == 3) c[i] = new Item(PATH + "car4.png");
+			else if(pol == 4) c[i] = new Item(PATH + "car5.png");
+			else if(pol == 5) c[i] = new Item(PATH + "car6.png");
+			else if(pol == 6) c[i] = new Item(PATH + "car7.png");
+			else if(pol == 7) c[i] = new Item(PATH + "car8.png");
+			else if(pol == 8) c[i] = new Item(PATH + "car9.png");
+			else if(pol == 9) c[i] = new Item(PATH + "car10.png");
+			else if(pol == 10) c[i] = new Item(PATH + "car11.png");
+			else if(pol == 11) c[i] = new Item(PATH + "car12.png");
+			else if(pol == 12) c[i] = new Item(PATH + "truck1.png");
+			else if(pol == 13) c[i] = new Item(PATH + "truck2.png");
+			else c[i] = new Item(PATH + "bus.png");
 		}	
 	}
 	
@@ -101,10 +99,10 @@ public abstract class Functions
 		{
 			int pol = generator.nextInt(4);
 			
-			if(pol == 0) o[i] = new Item("resources/sprites/enemies/rock1.png");
-			else if(pol == 1) o[i] = new Item("resources/sprites/enemies/rock2.png");
-			else if(pol == 2) o[i] = new Item("resources/sprites/enemies/tree1.png");
-			else o[i] = new Item("resources/sprites/enemies/tree2.png");
+			if(pol == 0) o[i] = new Item(PATH + "rock1.png");
+			else if(pol == 1) o[i] = new Item(PATH + "rock2.png");
+			else if(pol == 2) o[i] = new Item(PATH + "tree1.png");
+			else o[i] = new Item(PATH + "tree2.png");
 		}
 	}
 	
@@ -123,10 +121,8 @@ public abstract class Functions
 		{
 			if(level == 0)
 				c[i].setVector(0, 0.8);
-			
 			else if(level == 1)
 				c[i].setVector(0, 0.95);
-			
 			else
 				c[i].setVector(0, 1.1);
 		}
@@ -138,10 +134,8 @@ public abstract class Functions
 		{
 			if(level == 0)
 				o[i].setVector(0, 1.6);
-			
 			else if(level == 1)
 				o[i].setVector(0, 1.9);
-			
 			else
 				o[i].setVector(0, 2.2);
 		}

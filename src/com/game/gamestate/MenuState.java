@@ -13,11 +13,10 @@ public class MenuState extends GameState
 	
 	private int currentChoice;
 	
-	private String[] options = {"Start", "Records", "Quit"};
+	private final String[] options = {"Start", "Records", "Quit"};
 	
 	private Color titleColor;
 	private Font titleFont; 
-	
 	private Font font;
 	
 	public MenuState(GameStateManager gsm)
@@ -34,7 +33,8 @@ public class MenuState extends GameState
 			titleFont = new Font("Sans Serif", Font.BOLD, 28);
 			font = new Font("Arial", Font.BOLD, 14);
 			
-		}catch (Exception e)
+		}
+		catch(Exception e)
 		{
 			e.printStackTrace();
 		}
@@ -52,21 +52,17 @@ public class MenuState extends GameState
 	
 	public void draw(Graphics2D g)
 	{
-		//draw bg
 		bg.draw(g);
 		
-		//draw title
 		g.setColor(titleColor);
 		g.setFont(titleFont);
 		g.drawString("Traffic Racer 2D", 65, 70);
-		
 		g.setFont(font);
 		
 		for(int i = 0; i < options.length; i++)
 		{
 			if(i == currentChoice)
 				g.setColor(Color.RED);
-	
 			else
 				g.setColor(Color.BLACK);
 			
@@ -80,10 +76,8 @@ public class MenuState extends GameState
 	{
 		if(currentChoice == 0)
 			gsm.setState(GameStateManager.CARCHOOSESTATE);
-
 		else if(currentChoice == 1)
 			gsm.setState(GameStateManager.RECORDSSTATE);
-		
 		else if(currentChoice == 2)
 			System.exit(0);
 	}
@@ -107,13 +101,9 @@ public class MenuState extends GameState
 			
 			if(currentChoice == options.length)
 				currentChoice = 0;
-			
 		}
-		
 	}
 	
-	public void keyReleased(int key)
-	{
-		
-	}
+	@Override
+	public void keyReleased(int key) {}
 }

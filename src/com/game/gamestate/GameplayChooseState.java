@@ -19,9 +19,10 @@ public class GameplayChooseState extends GameState
 	private BufferedImage normal;
 	private BufferedImage time;
 	
+	private static final String PATH = "resources/backgrounds/";
 	private static int currentChoice;
 	
-	private String[] options = {"Normal", "With time"};
+	private final String[] options = {"Normal", "With time"};
 	
 	private Color titleColor;
 	private Font titleFont;
@@ -35,13 +36,13 @@ public class GameplayChooseState extends GameState
 		
 		try
 		{
-			bg = new Background("resources/backgrounds/gameplayChoose.png", 1);
+			bg = new Background(PATH + "gameplayChoose.png", 1);
 			
 			titleColor = new Color(128, 0, 0);
 			titleFont = new Font("Sans Serif", Font.BOLD, 28);
-			font = new Font("Arial", Font.BOLD, 14);
-			
-		}catch (Exception e)
+			font = new Font("Arial", Font.BOLD, 14);	
+		}
+		catch (Exception e)
 		{
 			e.printStackTrace();
 		}
@@ -52,43 +53,35 @@ public class GameplayChooseState extends GameState
 	{
 		try 
 		{
-			normal = ImageIO.read(new File("resources/backgrounds/normalGameplay.png"));
-			time = ImageIO.read(new File("resources/backgrounds/timeGameplay.png"));
-			
-		} catch (IOException e) 
+			normal = ImageIO.read(new File(PATH + "normalGameplay.png"));
+			time = ImageIO.read(new File(PATH + "timeGameplay.png"));
+		} 
+		catch (IOException e) 
 		{
 			e.printStackTrace();
 		}
-		
 		currentChoice = 0;
 	}
 
 	@Override
-	public void update() 
-	{
-		
-	}
+	public void update() {}
 
 	@Override
 	public void draw(Graphics2D g) 
 	{
 		bg.draw(g);	
 		
-		//draw title
 		g.setColor(titleColor);
 		g.setFont(titleFont);
-		g.drawString("Choose a gameplay", 50, 30);
-				
+		g.drawString("Choose a gameplay", 50, 30);	
 		g.setFont(font);
 				
 		for(int i = 0; i < options.length; i++)
 		{
 			if(i == currentChoice)
-				g.setColor(Color.RED);
-			
+				g.setColor(Color.RED);	
 			else
 				g.setColor(Color.BLACK);
-			
 			
 			if(i == 0) g.drawString(options[0], 155, 140);
 			else g.drawString(options[1], 147, 160);
@@ -98,8 +91,7 @@ public class GameplayChooseState extends GameState
 				g.setColor(Color.BLACK);
 				g.drawString("Just score as many points as possible", 50, 220);
 				g.drawImage(normal, 127, 40, null);
-			}
-			
+			}	
 			else 
 			{
 				g.setColor(Color.BLACK);
@@ -119,29 +111,22 @@ public class GameplayChooseState extends GameState
 			if(Menu.if_music)
 				Menu.stopMusic();
 		}
-		
 		else if(key == KeyEvent.VK_UP)
 		{
 			currentChoice--;
-			
 			if(currentChoice == -1)
 				currentChoice = options.length - 1;
-			
 		}
 		else if(key == KeyEvent.VK_DOWN)
 		{
 			currentChoice++;
-			
 			if(currentChoice == options.length)
 				currentChoice = 0;
 		}
 	}
 
 	@Override
-	public void keyReleased(int key) 
-	{
-		
-	}
+	public void keyReleased(int key) {}
 	
 	public static int getCurrentChoice()
 	{

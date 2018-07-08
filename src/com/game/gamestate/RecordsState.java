@@ -12,10 +12,8 @@ public class RecordsState extends GameState
 {
 	private Background bg;
 	
-	private String[] options = {"Achievements", "Back"};
-	
+	private final String[] options = {"Achievements", "Back"};
 	private int currentChoice;
-	
 	private Font font;
 	
 	public RecordsState(GameStateManager gsm)
@@ -30,7 +28,8 @@ public class RecordsState extends GameState
 			
 			font = new Font("Arial", Font.BOLD, 14);
 			
-		}catch (Exception e)
+		}
+		catch(Exception e)
 		{
 			e.printStackTrace();
 		}
@@ -48,7 +47,6 @@ public class RecordsState extends GameState
 	
 	public void draw(Graphics2D g)
 	{
-		//draw bg
 		bg.draw(g);
 		
 		g.setFont(font);
@@ -63,6 +61,7 @@ public class RecordsState extends GameState
 			{
 				g.setColor(Color.BLACK);
 			}
+	
 			if(i == 0) g.drawString(options[0], 130, 140);
 			else g.drawString(options[1], 160, 155);
 		}
@@ -96,31 +95,24 @@ public class RecordsState extends GameState
 	
 	public void keyPressed(int key)
 	{
-		
 		if(key == KeyEvent.VK_ENTER)
-			select();
-		
+			select();	
 		else if(key == KeyEvent.VK_UP)
 		{
 			currentChoice--;
 			
 			if(currentChoice == -1)
-			{
 				currentChoice = options.length - 1;
-			}
 		}
 		else if(key == KeyEvent.VK_DOWN)
 		{
 			currentChoice++;
+			
 			if(currentChoice == options.length)
-			{
 				currentChoice = 0;
-			}
 		}
 	}
 	
-	public void keyReleased(int key)
-	{
-		
-	}
+	@Override
+	public void keyReleased(int key) {}
 }

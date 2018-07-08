@@ -13,9 +13,9 @@ public class AchievementsState extends GameState
 {
 	private Background bg;
 	
-	private String option = "Back";
+	private final String option = "Back";
 	
-	Item[] medal = new Item[8];
+	private final Item[] medal = new Item[8];
 	
 	private static int currentChoice;
 	
@@ -32,7 +32,8 @@ public class AchievementsState extends GameState
 			
 			font = new Font("Arial", Font.BOLD, 14);
 			
-		}catch (Exception e)
+		}
+		catch(Exception e)
 		{
 			e.printStackTrace();
 		}
@@ -48,7 +49,6 @@ public class AchievementsState extends GameState
 		}
 	
 		setMedalsPosition();
-	
 	}
 	
 	public void update()
@@ -58,9 +58,7 @@ public class AchievementsState extends GameState
 	
 	public void draw(Graphics2D g)
 	{
-		//draw bg
-		bg.draw(g);
-		
+		bg.draw(g);	
 		g.setFont(font);
 		
 		for(int i = 0; i < medal.length; i++)
@@ -70,7 +68,6 @@ public class AchievementsState extends GameState
 		{
 			if(i == currentChoice)
 				g.setColor(Color.RED);
-			
 			else
 				g.setColor(Color.BLACK);
 				
@@ -96,82 +93,58 @@ public class AchievementsState extends GameState
 			else if(currentChoice == 7) g.drawString("Play the game 2000 times", 100, 220);
 			else if(currentChoice == 8) g.drawString("Play the game 5000 times", 100, 220);
 			
-			if(Menu.getAchievement1()) g.drawString("Done", 27, 33);
-			if(Menu.getAchievement2()) g.drawString("Done", 117, 33);
-			if(Menu.getAchievement3()) g.drawString("Done", 207, 33);
-			if(Menu.getAchievement4()) g.drawString("Done", 297, 33);
-			if(Menu.getAchievement5()) g.drawString("Done", 27, 123);
-			if(Menu.getAchievement6()) g.drawString("Done", 117, 123);
-			if(Menu.getAchievement7()) g.drawString("Done", 207, 123);
-			if(Menu.getAchievement8()) g.drawString("Done", 297, 123);
+			final String done = "Done";
+			
+			if(Menu.getAchievement1()) g.drawString(done, 27, 33);
+			if(Menu.getAchievement2()) g.drawString(done, 117, 33);
+			if(Menu.getAchievement3()) g.drawString(done, 207, 33);
+			if(Menu.getAchievement4()) g.drawString(done, 297, 33);
+			if(Menu.getAchievement5()) g.drawString(done, 27, 123);
+			if(Menu.getAchievement6()) g.drawString(done, 117, 123);
+			if(Menu.getAchievement7()) g.drawString(done, 207, 123);
+			if(Menu.getAchievement8()) g.drawString(done, 297, 123);
 		}
-		
 	}
 	
 	public void keyPressed(int key)
 	{
 		if(key == KeyEvent.VK_ENTER && currentChoice == 0)
 			gsm.setState(GameStateManager.RECORDSSTATE);
-		
 		else if(key == KeyEvent.VK_UP)
 		{
 			if(currentChoice == 0)
 				currentChoice = 6;
-			
 			else if(currentChoice == 5 || currentChoice == 6 || currentChoice == 7 || currentChoice == 8)
 				currentChoice -= 4;
-			
 			else return;
 		}
-		
 		else if(key == KeyEvent.VK_DOWN)
 		{	
 			if(currentChoice == 1 || currentChoice == 2 || currentChoice == 3 || currentChoice == 4)
 				currentChoice += 4;
-			
 			else
 				currentChoice = 0;
-			
 		}
-		
 		else if(key == KeyEvent.VK_RIGHT)
 		{
 			if(currentChoice == 0) return;
-			
 			else if(currentChoice == 4 || currentChoice == 8) return;
-			
-			else
-				currentChoice++;
-			
+			else currentChoice++;
 		}
 		
 		else if(key == KeyEvent.VK_LEFT)
 		{
 			if(currentChoice == 0) return;
-			
 			else if(currentChoice == 1 || currentChoice == 5) return;
-			
-			else
-				currentChoice--;
-			
+			else currentChoice--;
 		}
-		
 	}
 	
-	public void keyReleased(int key)
-	{
-		
-	}
+	public void keyReleased(int key) {}
 	
 	public void setMedalsPosition()
 	{
-		medal[0].setPosition(25, 10);
-		medal[1].setPosition(115, 10);
-		medal[2].setPosition(205, 10);
-		medal[3].setPosition(295, 10);
-		medal[4].setPosition(25, 100);
-		medal[5].setPosition(115, 100);
-		medal[6].setPosition(205, 100);
-		medal[7].setPosition(295, 100);
+		for(int i = 0; i < 4; i++) medal[i].setPosition(25 + 90 * i, 10);
+		for(int i = 4; i < 8; i++) medal[i].setPosition(25 + 90 * (i - 4), 100);
 	}
 }

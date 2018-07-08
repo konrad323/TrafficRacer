@@ -14,13 +14,13 @@ public class CarChooseState extends GameState
 	
 	private Item[] car = new Item[4];
 	
+	private static final String PATH = "resources/sprites/player/";
 	private static int currentChoice;
 	
-	private String[] options = {"Lamborghini Murcielago", "Dodge Challenger", "Aston Martin DB9", "Military Jeep"};
+	private final String[] options = {"Lamborghini Murcielago", "Dodge Challenger", "Aston Martin DB9", "Military Jeep"};
 	
 	private Color titleColor;
 	private Font titleFont;
-	
 	private Font font;
 	
 	public CarChooseState(GameStateManager gsm)
@@ -36,7 +36,8 @@ public class CarChooseState extends GameState
 			titleFont = new Font("Sans Serif", Font.BOLD, 28);
 			font = new Font("Arial", Font.BOLD, 14);
 			
-		}catch (Exception e)
+		}
+		catch(Exception e)
 		{
 			e.printStackTrace();
 		}
@@ -47,24 +48,21 @@ public class CarChooseState extends GameState
 	{
 		currentChoice = 0;
 		
-		car[0] = new Item("resources/sprites/player/car.png");
+		car[0] = new Item(PATH + "car.png");
 		car[0].setPosition(70, 50);
 		
-		car[1] = new Item("resources/sprites/player/dodge.png");
+		car[1] = new Item(PATH + "dodge.png");
 		car[1].setPosition(270, 50);
 		
-		car[2] = new Item("resources/sprites/player/aston.png");
+		car[2] = new Item(PATH + "aston.png");
 		car[2].setPosition(70, 170);
 		
-		car[3] = new Item("resources/sprites/player/jeep.png");
+		car[3] = new Item(PATH + "jeep.png");
 		car[3].setPosition(270, 170);
 	}
 
 	@Override
-	public void update() 
-	{
-		
-	}
+	public void update() {}
 
 	@Override
 	public void draw(Graphics2D g) 
@@ -74,7 +72,6 @@ public class CarChooseState extends GameState
 		for(int i = 0; i < 4; i++)
 			car[i].draw(g);
 		
-		//draw title
 		g.setColor(titleColor);
 		g.setFont(titleFont);
 		g.drawString("Choose a car", 95, 30);
@@ -84,8 +81,7 @@ public class CarChooseState extends GameState
 		for(int i = 0; i < options.length; i++)
 		{
 			if(i == currentChoice)
-			g.setColor(Color.RED);
-			
+				g.setColor(Color.RED);
 			else
 				g.setColor(Color.BLACK);
 					
@@ -101,44 +97,30 @@ public class CarChooseState extends GameState
 	{
 		if(key == KeyEvent.VK_ENTER)
 			gsm.setState(GameStateManager.DIFFICULTYCHOOSESTATE);
-		
 		else if(key == KeyEvent.VK_UP)
 		{
 			if(currentChoice == 0 || currentChoice == 1) return;
-			
 			currentChoice -= 2;
 		}
-		
 		else if(key == KeyEvent.VK_DOWN)
 		{
 			if(currentChoice == 2 || currentChoice == 3) return;
-			
 			currentChoice += 2;
-			
 		}
-		
 		else if(key == KeyEvent.VK_RIGHT)
 		{
-			if(currentChoice == 1 || currentChoice == 3) return;
-			
+			if(currentChoice == 1 || currentChoice == 3) return;	
 			currentChoice++;
-			
 		}
-		
 		else if(key == KeyEvent.VK_LEFT)
 		{
-			if(currentChoice == 0 || currentChoice == 2) return;
-			
+			if(currentChoice == 0 || currentChoice == 2) return;	
 			currentChoice--;
-			
 		}
 	}
 
 	@Override
-	public void keyReleased(int key) 
-	{
-		
-	}
+	public void keyReleased(int key) {}
 	
 	public static int getCurrentChoice()
 	{

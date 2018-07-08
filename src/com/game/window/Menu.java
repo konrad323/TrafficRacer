@@ -9,6 +9,8 @@ import java.awt.event.KeyListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.sound.sampled.AudioFormat;
 import javax.sound.sampled.AudioInputStream;
@@ -30,32 +32,17 @@ public class Menu extends JPanel implements ActionListener, KeyListener
 	public static final int HEIGHT = 280;
 	public static final int SCALE = 2;
 	
-	private static int currentNormalEasyRecord;
-	private static int currentNormalMediumRecord;
-	private static int currentNormalHardRecord;
-	private static int currentTimeEasyRecord;
-	private static int currentTimeMediumRecord;
-	private static int currentTimeHardRecord;
+	private static Map<String, Integer> records = new HashMap<String, Integer>();
 	private static int playsNumber;
-
-	private static boolean achievement1;
-	private static boolean achievement2;
-	private static boolean achievement3;
-	private static boolean achievement4;
-	private static boolean achievement5;
-	private static boolean achievement6;
-	private static boolean achievement7;
-	private static boolean achievement8;
+	private static boolean[] achievements = new boolean[8];
 	
-	public Timer timer;
-	static Clip clip;
 	public static boolean if_music = false;
+	private static Clip clip;
+	public Timer timer;
 	
-	//image
 	private BufferedImage image;
 	private Graphics2D g;
 	
-	//game state manager
 	private GameStateManager gsm;
 	
 	public Menu()
@@ -69,7 +56,8 @@ public class Menu extends JPanel implements ActionListener, KeyListener
 		{
 			RecordsManagement.setData();
 			
-		} catch (FileNotFoundException e) 
+		} 
+		catch(FileNotFoundException e) 
 		{
 			e.printStackTrace();
 		}
@@ -107,10 +95,7 @@ public class Menu extends JPanel implements ActionListener, KeyListener
 	}
 
 	@Override
-	public void keyTyped(KeyEvent arg0) 
-	{
-		
-	}
+	public void keyTyped(KeyEvent arg0) {}
 	
 	private void update()
 	{
@@ -130,62 +115,62 @@ public class Menu extends JPanel implements ActionListener, KeyListener
 	
 	public static int getCurrentNormalEasyRecord() 
 	{
-		return currentNormalEasyRecord;
+		return records.get("currentNormalEasyRecord");
 	}
 
-	public static void setCurrentNormalEasyRecord(int currentNormalEasyRecord) 
+	public static void setCurrentNormalEasyRecord(int cner) 
 	{
-		Menu.currentNormalEasyRecord = currentNormalEasyRecord;
+		records.put("currentNormalEasyRecord", cner);
 	}
 
 	public static int getCurrentNormalMediumRecord() 
-	{
-		return currentNormalMediumRecord;
+	{	
+		return records.get("currentNormalMediumRecord");
 	}
 
-	public static void setCurrentNormalMediumRecord(int currentNormalMediumRecord) 
+	public static void setCurrentNormalMediumRecord(int cnmr) 
 	{
-		Menu.currentNormalMediumRecord = currentNormalMediumRecord;
+		records.put("currentNormalMediumRecord", cnmr);
 	}
 
 	public static int getCurrentNormalHardRecord() 
 	{
-		return currentNormalHardRecord;
+		return records.get("currentNormalHardRecord");
 	}
 
-	public static void setCurrentNormalHardRecord(int currentNormalHardRecord) 
+	public static void setCurrentNormalHardRecord(int cnhr) 
 	{
-		Menu.currentNormalHardRecord = currentNormalHardRecord;
+		records.put("currentNormalHardRecord", cnhr);
 	}
 
 	public static int getCurrentTimeEasyRecord() 
 	{
-		return currentTimeEasyRecord;
+		return records.get("currentTimeEasyRecord");
 	}
 
-	public static void setCurrentTimeEasyRecord(int currentTimeEasyRecord) 
+	public static void setCurrentTimeEasyRecord(int cter) 
 	{
-		Menu.currentTimeEasyRecord = currentTimeEasyRecord;
+		records.put("currentTimeEasyRecord", cter);
 	}
 
 	public static int getCurrentTimeMediumRecord() 
 	{
-		return currentTimeMediumRecord;
+		return records.get("currentTimeMediumRecord");
 	}
 
-	public static void setCurrentTimeMediumRecord(int currentTimeMediumRecord) 
+	public static void setCurrentTimeMediumRecord(int ctmr) 
 	{
-		Menu.currentTimeMediumRecord = currentTimeMediumRecord;
+		records.put("currentTimeMediumRecord", ctmr);
 	}
 
 	public static int getCurrentTimeHardRecord() 
 	{
-		return currentTimeHardRecord;
+		return records.get("currentTimeHardRecord");
 	}
 
-	public static void setCurrentTimeHardRecord(int currentTimeHardRecord) 
+	public static void setCurrentTimeHardRecord(int cthr) 
 	{
-		Menu.currentTimeHardRecord = currentTimeHardRecord;
+		records.put("currentTimeHardRecord", cthr);
 	}
 
 	public static int getPlaysNumber()
@@ -193,89 +178,89 @@ public class Menu extends JPanel implements ActionListener, KeyListener
 		return playsNumber;
 	}
 	
-	public static void setPlaysNumber(int playsNumber)
+	public static void setPlaysNumber(int pn)
 	{
-		Menu.playsNumber = playsNumber;
+		playsNumber = pn;
 	}
 	
 	public static boolean getAchievement1() 
 	{
-		return achievement1;
+		return achievements[0];
 	}
 
-	public static void setAchievement1(boolean achievement1) 
+	public static void setAchievement1(boolean a1) 
 	{
-		Menu.achievement1 = achievement1;
+		achievements[0] = a1;
 	}
 
 	public static boolean getAchievement2() 
 	{
-		return achievement2;
+		return achievements[1];
 	}
 
-	public static void setAchievement2(boolean achievement2) 
+	public static void setAchievement2(boolean a2) 
 	{
-		Menu.achievement2 = achievement2;
+		achievements[1] = a2;
 	}
 
 	public static boolean getAchievement3() 
 	{
-		return achievement3;
+		return achievements[2];
 	}
 
-	public static void setAchievement3(boolean achievement3) 
+	public static void setAchievement3(boolean a3) 
 	{
-		Menu.achievement3 = achievement3;
+		achievements[2] = a3;
 	}
 
 	public static boolean getAchievement4() 
 	{
-		return achievement4;
+		return achievements[3];
 	}
 
-	public static void setAchievement4(boolean achievement4) 
+	public static void setAchievement4(boolean a4) 
 	{
-		Menu.achievement4 = achievement4;
+		achievements[3] = a4;
 	}
 
 	public static boolean getAchievement5() 
 	{
-		return achievement5;
+		return achievements[4];
 	}
 
-	public static void setAchievement5(boolean achievement5) 
+	public static void setAchievement5(boolean a5) 
 	{
-		Menu.achievement5 = achievement5;
+		achievements[4] = a5;
 	}
 
 	public static boolean getAchievement6() 
 	{
-		return achievement6;
+		return achievements[5];
 	}
 
-	public static void setAchievement6(boolean achievement6) 
+	public static void setAchievement6(boolean a6) 
 	{
-		Menu.achievement6 = achievement6;
+		achievements[5] = a6;
 	}
 
 	public static boolean getAchievement7() 
 	{
-		return achievement7;
+		return achievements[6];
 	}
 
-	public static void setAchievement7(boolean achievement7) 
+	public static void setAchievement7(boolean a7) 
 	{
-		Menu.achievement7 = achievement7;
+		achievements[6] = a7;
 	}
 
 	public static boolean getAchievement8() 
 	{
-		return achievement8;
+		return achievements[7];
 	}
 
-	public static void setAchievement8(boolean achievement8) 
+	public static void setAchievement8(boolean a8) 
 	{
-		Menu.achievement8 = achievement8;
+		achievements[7] = a8;
 	}
 
 	@Override
@@ -310,7 +295,8 @@ public class Menu extends JPanel implements ActionListener, KeyListener
 		    clip.open(stream);
 		    clip.start();
 		    
-		}catch (Exception e) 
+		}
+		catch(Exception e) 
 		{
 		    e.printStackTrace();
 		}

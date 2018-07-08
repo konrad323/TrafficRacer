@@ -5,7 +5,7 @@ import java.util.ArrayList;
 
 public class GameStateManager 
 {
-	private ArrayList<GameState> gameStates;
+	private final ArrayList<GameState> gameStates;
 	private int currentState;
 	
 	public static final int MENUSTATE = 0;
@@ -61,5 +61,4 @@ public class GameStateManager
 	{
 		return currentState;
 	}
-
 }

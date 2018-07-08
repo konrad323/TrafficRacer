@@ -26,12 +26,13 @@ public class LevelState extends GameState implements ActionListener
 	private Background bg;
 	private Item car;
 	
-	private Item[] c = new Item[6];
-	private Item[] o = new Item[2];
+	private final Item[] c = new Item[6];
+	private final Item[] o = new Item[2];
 	
 	Timer timer1; // timer do rozgrywki time gameplay
 	Timer timer2; // timer do wyswietlania zdobytych punktow
 	Clip clip;
+	private static final String PATH = "resources/sprites/player/";
 	
 	private static int currentScore;
 	private static int previousScore;
@@ -49,9 +50,7 @@ public class LevelState extends GameState implements ActionListener
 	private boolean ifSoundDelayed; // aby sie pozbyc opoznienia spowodowanego dzialaniem clip.isActive()
 	
 	private int currentChoice;
-	
-	private String[] options = {"Play again", "Exit"};
-	
+	private final String[] options = {"Play again", "Exit"};
 	
 	public LevelState(GameStateManager gsm)
 	{
@@ -140,9 +139,7 @@ public class LevelState extends GameState implements ActionListener
 		g.drawString("Points " + currentScore, 150, 20);
 		
 		if(!zaczeto)
-		{
 			g.drawString("Click up to start", 113, 100);
-		}
 		
 		if(one_arrived && (c[0].getY() > Menu.HEIGHT - 140 || c[1].getY() > Menu.HEIGHT - 140 || c[2].getY() > Menu.HEIGHT - 140))
 		{
@@ -190,7 +187,8 @@ public class LevelState extends GameState implements ActionListener
 			{
 				RecordsManagement.saveRecord(DifficultyChooseState.getCurrentChoice(), 
 												GameplayChooseState.getCurrentChoice(), currentScore);
-			} catch (IOException e) 
+			} 
+			catch(IOException e) 
 			{
 				e.printStackTrace();
 			}
@@ -200,7 +198,8 @@ public class LevelState extends GameState implements ActionListener
 				RecordsManagement.saveAchievements(DifficultyChooseState.getCurrentChoice(), 
 														GameplayChooseState.getCurrentChoice(), 
 																currentScore, Menu.getPlaysNumber(), time);
-			} catch (IOException e) 
+			} 
+			catch(IOException e) 
 			{
 				e.printStackTrace();
 			}
@@ -223,7 +222,6 @@ public class LevelState extends GameState implements ActionListener
 			{
 				if(i == currentChoice)
 					g.setColor(Color.RED);
-				
 				else
 					g.setColor(Color.BLACK);
 				
@@ -245,7 +243,6 @@ public class LevelState extends GameState implements ActionListener
 					timer2.restart();
 				}
 			}
-		
 		}
 		
 		if(firstReceivedPoints && currentScore > previousScore)
@@ -256,16 +253,12 @@ public class LevelState extends GameState implements ActionListener
 		}
 		
 		ifSoundDelayed = false;
-			
 	}
 	
 	private void select()
 	{
-		if(currentChoice == 0)
-			init();
-	
-		else 
-			gsm.setState(GameStateManager.MENUSTATE);
+		if(currentChoice == 0) init();
+		else gsm.setState(GameStateManager.MENUSTATE);
 	}
 	
 	public void keyPressed(int key)
@@ -280,21 +273,16 @@ public class LevelState extends GameState implements ActionListener
 			
 			zaczeto = true;
 			
-			if(GameplayChooseState.getCurrentChoice() == 1) 
-				timer1.start();
+			if(GameplayChooseState.getCurrentChoice() == 1) timer1.start();
 			
 			playSound("resources/music/car driving.wav");
 		}
-		
 		else if(key == KeyEvent.VK_ENTER && optionsShowed)
 			select();
-		
 		else if(key == KeyEvent.VK_LEFT && car.getX() >= 0 && zaczeto && !lose)
 			left = true;
-		
 		else if(key == KeyEvent.VK_RIGHT && car.getX() + car.getWidth() <= Menu.WIDTH && zaczeto && !lose)
 			right = true;
-		
 		else if(key == KeyEvent.VK_UP && optionsShowed)
 		{
 			currentChoice--;
@@ -302,10 +290,10 @@ public class LevelState extends GameState implements ActionListener
 			if(currentChoice == -1)
 				currentChoice = options.length - 1;
 		}
-		
 		else if(key == KeyEvent.VK_DOWN && optionsShowed)
 		{
 			currentChoice++;
+		
 			if(currentChoice == options.length)
 				currentChoice = 0;
 		}
@@ -313,11 +301,8 @@ public class LevelState extends GameState implements ActionListener
 	
 	public void keyReleased(int k)
 	{
-		if(k == KeyEvent.VK_LEFT)
-			left = false;
-		
-		else if(k == KeyEvent.VK_RIGHT)
-			right = false;
+		if(k == KeyEvent.VK_LEFT) left = false;
+		else if(k == KeyEvent.VK_RIGHT) right = false;
 	}
 	
 	@Override
@@ -336,32 +321,21 @@ public class LevelState extends GameState implements ActionListener
 	
 	public void initGame()
 	{
-		
-		if(CarChooseState.getCurrentChoice() == 0) car = new Item("resources/sprites/player/car.png");
-		else if(CarChooseState.getCurrentChoice() == 1) car = new Item("resources/sprites/player/dodge.png");
-		else if(CarChooseState.getCurrentChoice() == 2) car = new Item("resources/sprites/player/aston.png");
-		else if(CarChooseState.getCurrentChoice() == 3) car = new Item("resources/sprites/player/jeep.png");
+		if(CarChooseState.getCurrentChoice() == 0) car = new Item(PATH + "car.png");
+		else if(CarChooseState.getCurrentChoice() == 1) car = new Item(PATH + "dodge.png");
+		else if(CarChooseState.getCurrentChoice() == 2) car = new Item(PATH + "aston.png");
+		else if(CarChooseState.getCurrentChoice() == 3) car = new Item(PATH + "jeep.png");
 		
 		o[0].setPosition(2, -100);
 		o[1].setPosition(327, -150);
 		
 		Functions.generateCarsPosition(c, 0, 2);
 		
-		c[3].setPosition(80, -1100);
-		c[4].setPosition(150, -1100);
-		c[5].setPosition(220, -1100);
+		for(int i = 3; i < 6; i++) c[i].setPosition(80 + 70 * (i - 3), -1100);
 		
-		zaczeto = false;
-		lose = false;
-		optionsShowed = false;
-		one_arrived = true;
-		left = false;
-		right = false;
-		changeTime = false;
-		pointsReceived = false;
-		firstReceivedPoints = true;
-		wasCollision = false;
-		ifSoundDelayed = false;
+		zaczeto = lose = optionsShowed = left = right = changeTime = false;
+		pointsReceived = wasCollision = ifSoundDelayed = false;
+		one_arrived = firstReceivedPoints = true;
 		
 		car.setPosition(Menu.WIDTH / 2 - car.getWidth() / 2, Menu.HEIGHT - car.getHeight() - 50);		
 		
@@ -372,24 +346,19 @@ public class LevelState extends GameState implements ActionListener
 		try 
 		{
 			RecordsManagement.savePlays();
-			
-		} catch (IOException e) 
+		} 
+		catch(IOException e) 
 		{
 			e.printStackTrace();
 		}
-		
 	}
 
 	@Override
 	public void update() 
 	{
 		car.update();
-		
-		for(int i = 0; i < 6; i++)
-			c[i].update();
-		
-		for(int i = 0; i < 2; i++)
-			o[i].update();
+		for(int i = 0; i < 6; i++) c[i].update();
+		for(int i = 0; i < 2; i++) o[i].update();
 	}
 
 	@Override
@@ -398,16 +367,12 @@ public class LevelState extends GameState implements ActionListener
 		Object source = e.getSource();
 		
 		if(source == timer1)
-		{
 			changeTime = true;
-		}
-		
 		else
 		{
 			previousScore = currentScore;
 			pointsReceived = !pointsReceived;
 		}
-		
 	}
 	
 	public void playSound(String filename)
@@ -426,10 +391,10 @@ public class LevelState extends GameState implements ActionListener
 		    clip.open(stream);
 		    clip.start();
 		    
-		}catch (Exception e) 
+		}
+		catch(Exception e) 
 		{
 		    e.printStackTrace();
 		}
 	}
-
 }

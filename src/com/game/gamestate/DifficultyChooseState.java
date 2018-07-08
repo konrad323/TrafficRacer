@@ -13,11 +13,10 @@ public class DifficultyChooseState extends GameState
 	
 	private static int currentChoice;
 	
-	private String[] options = {"Easy", "Medium", "Hard"};
+	private final String[] options = {"Easy", "Medium", "Hard"};
 	
 	private Color titleColor;
 	private Font titleFont;
-	
 	private Font font;
 	
 	public DifficultyChooseState(GameStateManager gsm)
@@ -31,9 +30,9 @@ public class DifficultyChooseState extends GameState
 			
 			titleColor = new Color(128, 0, 0);
 			titleFont = new Font("Sans Serif", Font.BOLD, 28);
-			font = new Font("Arial", Font.BOLD, 14);
-			
-		}catch (Exception e)
+			font = new Font("Arial", Font.BOLD, 14);		
+		}
+		catch(Exception e)
 		{
 			e.printStackTrace();
 		}
@@ -46,28 +45,22 @@ public class DifficultyChooseState extends GameState
 	}
 
 	@Override
-	public void update() 
-	{
-		
-	}
+	public void update() {}
 
 	@Override
 	public void draw(Graphics2D g) 
 	{
 		bg.draw(g);	
 		
-		//draw title
 		g.setColor(titleColor);
 		g.setFont(titleFont);
-		g.drawString("Choose a difficulty level", 20, 30);
-				
+		g.drawString("Choose a difficulty level", 20, 30);		
 		g.setFont(font);
 				
 		for(int i = 0; i < options.length; i++)
 		{
 			if(i == currentChoice)
-			g.setColor(Color.RED);
-			
+				g.setColor(Color.RED);
 			else
 				g.setColor(Color.BLACK);
 					
@@ -82,29 +75,22 @@ public class DifficultyChooseState extends GameState
 	{
 		if(key == KeyEvent.VK_ENTER)
 			gsm.setState(GameStateManager.GAMEPLAYCHOOSESTATE);
-		
 		else if(key == KeyEvent.VK_UP)
 		{
 			currentChoice--;
-			
 			if(currentChoice == -1)
 				currentChoice = options.length - 1;
-			
 		}
 		else if(key == KeyEvent.VK_DOWN)
 		{
 			currentChoice++;
-			
 			if(currentChoice == options.length)
 				currentChoice = 0;
 		}
 	}
 
 	@Override
-	public void keyReleased(int key) 
-	{
-		
-	}
+	public void keyReleased(int key) {}
 	
 	public static int getCurrentChoice()
 	{
