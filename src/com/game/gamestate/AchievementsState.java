@@ -14,7 +14,8 @@ public class AchievementsState extends GameState
 	private Background bg;
 	
 	private final String option = "Back";
-	private final Item[] medal = new Item[8];
+	private final short MEDALSNUMBER = 8;
+	private final Item[] medal = new Item[MEDALSNUMBER];
 	private static int currentChoice;
 	private Font font;
 	
@@ -34,6 +35,7 @@ public class AchievementsState extends GameState
 		}
 	}
 	
+	@Override
 	public void init()
 	{	
 		currentChoice = 0;
@@ -43,11 +45,13 @@ public class AchievementsState extends GameState
 		setMedalsPosition();
 	}
 	
+	@Override
 	public void update()
 	{
 		bg.update();
 	}
 	
+	@Override
 	public void draw(Graphics2D g)
 	{
 		bg.draw(g);	
@@ -55,7 +59,7 @@ public class AchievementsState extends GameState
 		
 		for(int i = 0; i < medal.length; i++) medal[i].draw(g);
 		
-		for(int i = 0; i < 9; i++)
+		for(int i = 0; i < MEDALSNUMBER + 1; i++)
 		{
 			if(i == currentChoice) g.setColor(Color.RED);
 			else g.setColor(Color.BLACK);
@@ -95,6 +99,7 @@ public class AchievementsState extends GameState
 		}
 	}
 	
+	@Override
 	public void keyPressed(int key)
 	{
 		if(key == KeyEvent.VK_ENTER && currentChoice == 0)
@@ -105,7 +110,8 @@ public class AchievementsState extends GameState
 				currentChoice = 6;
 			else if(currentChoice == 5 || currentChoice == 6 || currentChoice == 7 || currentChoice == 8)
 				currentChoice -= 4;
-			else return;
+			else 
+				return;
 		}
 		else if(key == KeyEvent.VK_DOWN)
 		{	
@@ -135,11 +141,12 @@ public class AchievementsState extends GameState
 		}
 	}
 	
+	@Override
 	public void keyReleased(int key) {}
 	
 	public void setMedalsPosition()
 	{
-		for(int i = 0; i < 4; i++) medal[i].setPosition(25 + 90 * i, 10);
-		for(int i = 4; i < 8; i++) medal[i].setPosition(25 + 90 * (i - 4), 100);
+		for(int i = 0; i < MEDALSNUMBER / 2; i++) medal[i].setPosition(25 + 90 * i, 10);
+		for(int i = MEDALSNUMBER / 2; i < MEDALSNUMBER; i++) medal[i].setPosition(25 + 90 * (i - 4), 100);
 	}
 }

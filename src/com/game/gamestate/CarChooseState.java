@@ -12,8 +12,8 @@ public class CarChooseState extends GameState
 {
 	private Background bg;
 	
-	private Item[] car = new Item[4];
-	private static final String PATH = "resources/sprites/player/";
+	private final Item[] car = new Item[4];
+	private final String PATH = "resources/sprites/player/";
 	private static int currentChoice;
 	private final String[] options = {"Lamborghini Murcielago", "Dodge Challenger", "Aston Martin DB9", "Military Jeep"};
 	

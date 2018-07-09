@@ -37,16 +37,19 @@ public class MenuState extends GameState
 		}
 	}
 	
+	@Override
 	public void init()
 	{
 		currentChoice = 0;
 	}
 	
+	@Override
 	public void update()
 	{
 		bg.update();
 	}
 	
+	@Override
 	public void draw(Graphics2D g)
 	{
 		bg.draw(g);
@@ -77,6 +80,7 @@ public class MenuState extends GameState
 			System.exit(0);
 	}
 	
+	@Override
 	public void keyPressed(int key)
 	{
 		if(key == KeyEvent.VK_ENTER)
@@ -87,8 +91,7 @@ public class MenuState extends GameState
 			currentChoice--;
 			
 			if(currentChoice == -1)
-				currentChoice = options.length - 1;
-			
+				currentChoice = options.length - 1;		
 		}
 		if(key == KeyEvent.VK_DOWN)
 		{

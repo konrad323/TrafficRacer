@@ -19,7 +19,7 @@ public class GameplayChooseState extends GameState
 	private BufferedImage normal;
 	private BufferedImage time;
 	
-	private static final String PATH = "resources/backgrounds/";
+	private final String PATH = "resources/backgrounds/";
 	private static int currentChoice;
 	private final String[] options = {"Normal", "With time"};
 	
@@ -53,7 +53,7 @@ public class GameplayChooseState extends GameState
 			normal = ImageIO.read(new File(PATH + "normalGameplay.png"));
 			time = ImageIO.read(new File(PATH + "timeGameplay.png"));
 		} 
-		catch (IOException e) 
+		catch(IOException e) 
 		{
 			e.printStackTrace();
 		}
@@ -104,18 +104,19 @@ public class GameplayChooseState extends GameState
 		if(key == KeyEvent.VK_ENTER)
 		{	
 			gsm.setState(GameStateManager.LEVELSTATE);
-			if(Menu.if_music)
-				Menu.stopMusic();
+			if(Menu.ifMusic) Menu.stopMusic();
 		}
 		else if(key == KeyEvent.VK_UP)
 		{
 			currentChoice--;
+			
 			if(currentChoice == -1)
 				currentChoice = options.length - 1;
 		}
 		else if(key == KeyEvent.VK_DOWN)
 		{
 			currentChoice++;
+			
 			if(currentChoice == options.length)
 				currentChoice = 0;
 		}

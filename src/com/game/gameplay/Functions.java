@@ -37,8 +37,8 @@ public abstract class Functions
 	public static int scoreCounter(Item car, Item c, int currentScore)
 	{
 		if(car.getY() == (int) c.getY() && ((car.getX() < c.getX() && c.getX() - car.getX() - car.getWidth() < 4)
-			|| (car.getX() > c.getX() && car.getX() - c.getX() - c.getWidth() < 4)))
-				currentScore += 100;
+		   || (car.getX() > c.getX() && car.getX() - c.getX() - c.getWidth() < 4)))
+			   currentScore += 100;
 		
 		else if(car.getY() == (int) c.getY() && ((car.getX() < c.getX() && c.getX() - car.getX() - car.getWidth() < 7)
 				|| (car.getX() > c.getX() && car.getX() - c.getX() - c.getWidth() < 7)))

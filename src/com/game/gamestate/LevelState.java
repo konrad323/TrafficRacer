@@ -26,14 +26,16 @@ public class LevelState extends GameState implements ActionListener
 	private Background bg;
 	private Item car;
 	
-	private final Item[] c = new Item[6];
-	private final Item[] o = new Item[2];
+	private final short CARSNUMBER = 6;
+	private final short OBSTACLESNUMBER = 2;
+	private final Item[] c = new Item[CARSNUMBER];
+	private final Item[] o = new Item[OBSTACLESNUMBER];
 	
-	Timer timer1, timer2; // timer1 do rozgrywki time gameplay, timer2 do wyswietlania zdobytych punktow
-	Clip clip;
-	private static final String PATH = "resources/sprites/player/";
+	private Timer timer1, timer2; // timer1 do rozgrywki time gameplay, timer2 do wyswietlania zdobytych punktow
+	private Clip clip;
+	private final String PATH = "resources/sprites/player/";
 	
-	private static int currentScore, previousScore, time;
+	private int currentScore, previousScore, time;
 	
 	private boolean zaczeto, lose, optionsShowed, one_arrived, left, right, changeTime;
 	private boolean pointsReceived, firstReceivedPoints, wasCollision;
@@ -52,8 +54,8 @@ public class LevelState extends GameState implements ActionListener
 	{
 		bg.draw(g);
 	
-		for(int i = 0; i < 6; i++) c[i].draw(g);
-		for(int i = 0; i < 2; i++) o[i].draw(g);
+		for(int i = 0; i < CARSNUMBER; i++) c[i].draw(g);
+		for(int i = 0; i < OBSTACLESNUMBER; i++) o[i].draw(g);
 		
 		car.draw(g);
 		
@@ -86,7 +88,7 @@ public class LevelState extends GameState implements ActionListener
 			clip.stop();
 		}
 		
-		for(int i = 0; i < 6; i++)
+		for(int i = 0; i < CARSNUMBER; i++)
 		{
 			if(Functions.collision(car, c[i]))
 			{
@@ -102,7 +104,7 @@ public class LevelState extends GameState implements ActionListener
 			}
 		}
 		
-		for(int i = 0; i < 2; i++)
+		for(int i = 0; i < OBSTACLESNUMBER; i++)
 		{
 			if(Functions.collision(car, o[i]))
 			{
@@ -156,15 +158,15 @@ public class LevelState extends GameState implements ActionListener
 		
 		if(lose)
 		{
-			for(int i = 0; i < 6; i++) c[i].setVector(0, 0);
-			for(int i = 0; i < 2; i++) o[i].setVector(0, 0);
+			for(int i = 0; i < CARSNUMBER; i++) c[i].setVector(0, 0);
+			for(int i = 0; i < OBSTACLESNUMBER; i++) o[i].setVector(0, 0);
 			
 			g.drawString("GAME OVER", 130, 80);
 			
 			try 
 			{
 				RecordsManagement.saveRecord(DifficultyChooseState.getCurrentChoice(), 
-												GameplayChooseState.getCurrentChoice(), currentScore);
+											 GameplayChooseState.getCurrentChoice(), currentScore);
 			} 
 			catch(IOException e) 
 			{
@@ -174,8 +176,8 @@ public class LevelState extends GameState implements ActionListener
 			try 
 			{
 				RecordsManagement.saveAchievements(DifficultyChooseState.getCurrentChoice(), 
-														GameplayChooseState.getCurrentChoice(), 
-																currentScore, Menu.getPlaysNumber(), time);
+												   GameplayChooseState.getCurrentChoice(), 
+												   currentScore, Menu.getPlaysNumber(), time);
 			} 
 			catch(IOException e) 
 			{
@@ -208,7 +210,7 @@ public class LevelState extends GameState implements ActionListener
 		
 		if(!lose) 
 		{
-			for(int i = 0; i < 6; i++)
+			for(int i = 0; i < CARSNUMBER; i++)
 			{
 				int tempScore = currentScore;
 				currentScore = Functions.scoreCounter(car, c[i], currentScore);
@@ -241,10 +243,10 @@ public class LevelState extends GameState implements ActionListener
 	{
 		if(key == KeyEvent.VK_UP && !zaczeto)
 		{
-			for(int i = 0; i < 6; i++)
+			for(int i = 0; i < CARSNUMBER; i++)
 				Functions.setCarLevelVectors(c, 0, c.length - 1, DifficultyChooseState.getCurrentChoice());
 			
-			for(int i = 0; i < 2; i++)
+			for(int i = 0; i < OBSTACLESNUMBER; i++)
 				Functions.setObstacleLevelVectors(o, 0, o.length - 1, DifficultyChooseState.getCurrentChoice());
 			
 			zaczeto = true;
@@ -307,7 +309,7 @@ public class LevelState extends GameState implements ActionListener
 		
 		Functions.generateCarsPosition(c, 0, 2);
 		
-		for(int i = 3; i < 6; i++) c[i].setPosition(80 + 70 * (i - 3), -1100);
+		for(int i = CARSNUMBER / 2; i < CARSNUMBER; i++) c[i].setPosition(80 + 70 * (i - 3), -1100);
 		
 		zaczeto = lose = optionsShowed = left = right = changeTime = false;
 		pointsReceived = wasCollision = ifSoundDelayed = false;
@@ -332,8 +334,8 @@ public class LevelState extends GameState implements ActionListener
 	public void update() 
 	{
 		car.update();
-		for(int i = 0; i < 6; i++) c[i].update();
-		for(int i = 0; i < 2; i++) o[i].update();
+		for(int i = 0; i < CARSNUMBER; i++) c[i].update();
+		for(int i = 0; i < OBSTACLESNUMBER; i++) o[i].update();
 	}
 
 	@Override

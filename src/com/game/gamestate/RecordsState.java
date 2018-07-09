@@ -24,10 +24,8 @@ public class RecordsState extends GameState
 		try
 		{
 			bg = new Background("resources/backgrounds/records.jpg", 1);
-			bg.setVector(0, -0.15);
-			
+			bg.setVector(0, -0.15);	
 			font = new Font("Arial", Font.BOLD, 14);
-			
 		}
 		catch(Exception e)
 		{
@@ -35,20 +33,22 @@ public class RecordsState extends GameState
 		}
 	}
 	
+	@Override
 	public void init()
 	{
 		currentChoice = 0;
 	}
 	
+	@Override
 	public void update()
 	{
 		bg.update();
 	}
 	
+	@Override
 	public void draw(Graphics2D g)
 	{
 		bg.draw(g);
-		
 		g.setFont(font);
 		
 		for(int i = 0; i < options.length; i++)
@@ -86,10 +86,10 @@ public class RecordsState extends GameState
 			gsm.setState(GameStateManager.MENUSTATE);
 	}
 	
+	@Override
 	public void keyPressed(int key)
 	{
-		if(key == KeyEvent.VK_ENTER)
-			select();	
+		if(key == KeyEvent.VK_ENTER) select();	
 		else if(key == KeyEvent.VK_UP)
 		{
 			currentChoice--;

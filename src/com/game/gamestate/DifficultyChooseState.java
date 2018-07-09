@@ -74,12 +74,14 @@ public class DifficultyChooseState extends GameState
 		else if(key == KeyEvent.VK_UP)
 		{
 			currentChoice--;
+
 			if(currentChoice == -1)
 				currentChoice = options.length - 1;
 		}
 		else if(key == KeyEvent.VK_DOWN)
 		{
 			currentChoice++;
+			
 			if(currentChoice == options.length)
 				currentChoice = 0;
 		}

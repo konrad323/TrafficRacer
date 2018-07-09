@@ -35,9 +35,9 @@ public class Menu extends JPanel implements ActionListener, KeyListener
 	private static int playsNumber;
 	private static boolean[] achievements = new boolean[8];
 	
-	public static boolean if_music = false;
+	public static boolean ifMusic = false;
 	private static Clip clip;
-	public Timer timer;
+	private Timer timer;
 	
 	private BufferedImage image;
 	private Graphics2D g;
@@ -76,11 +76,12 @@ public class Menu extends JPanel implements ActionListener, KeyListener
 		File file = new File("resources/music/music.wav");
 		if(file.exists())
 		{
-			if_music = true;
+			ifMusic = true;
 			playSound(file.getPath());
 		}
 	}
 
+	@Override
 	public void keyPressed(KeyEvent key) 
 	{
 		gsm.keyPressed(key.getKeyCode());
@@ -268,7 +269,7 @@ public class Menu extends JPanel implements ActionListener, KeyListener
 		update();
 		drawToScreen();
 		
-		if(if_music && gsm.getCurrentState() == 0 && !clip.isActive()) 
+		if(ifMusic && gsm.getCurrentState() == 0 && !clip.isActive()) 
 			playSound("resources/music/music.wav");
 	}
 	
