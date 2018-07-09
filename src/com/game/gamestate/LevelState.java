@@ -37,7 +37,7 @@ public class LevelState extends GameState implements ActionListener
 	
 	private int currentScore, previousScore, time;
 	
-	private boolean zaczeto, lose, optionsShowed, one_arrived, left, right, changeTime;
+	private boolean started, lose, optionsShowed, one_arrived, left, right, changeTime;
 	private boolean pointsReceived, firstReceivedPoints, wasCollision;
 	private boolean ifSoundDelayed; // aby sie pozbyc opoznienia spowodowanego dzialaniem clip.isActive()
 	
@@ -124,7 +124,7 @@ public class LevelState extends GameState implements ActionListener
 		g.setFont(new Font("Verdana", Font.BOLD, 18));
 		g.drawString("Points " + currentScore, 150, 20);
 		
-		if(!zaczeto) g.drawString("Click up to start", 113, 100);
+		if(!started) g.drawString("Click up to start", 113, 100);
 		
 		if(one_arrived && (c[0].getY() > Menu.HEIGHT - 140 || c[1].getY() > Menu.HEIGHT - 140 || c[2].getY() > Menu.HEIGHT - 140))
 		{
@@ -188,7 +188,7 @@ public class LevelState extends GameState implements ActionListener
 			timer2.stop();
 		}
 		
-		if(zaczeto && !lose && !clip.isActive())
+		if(started && !lose && !clip.isActive())
 			playSound("resources/music/car driving.wav");
 		
 		if(lose && !ifSoundDelayed && !clip.isActive())
@@ -241,7 +241,7 @@ public class LevelState extends GameState implements ActionListener
 	
 	public void keyPressed(int key)
 	{
-		if(key == KeyEvent.VK_UP && !zaczeto)
+		if(key == KeyEvent.VK_UP && !started)
 		{
 			for(int i = 0; i < CARSNUMBER; i++)
 				Functions.setCarLevelVectors(c, 0, c.length - 1, DifficultyChooseState.getCurrentChoice());
@@ -249,7 +249,7 @@ public class LevelState extends GameState implements ActionListener
 			for(int i = 0; i < OBSTACLESNUMBER; i++)
 				Functions.setObstacleLevelVectors(o, 0, o.length - 1, DifficultyChooseState.getCurrentChoice());
 			
-			zaczeto = true;
+			started = true;
 			
 			if(GameplayChooseState.getCurrentChoice() == 1) timer1.start();
 			
@@ -257,9 +257,9 @@ public class LevelState extends GameState implements ActionListener
 		}
 		else if(key == KeyEvent.VK_ENTER && optionsShowed)
 			select();
-		else if(key == KeyEvent.VK_LEFT && car.getX() >= 0 && zaczeto && !lose)
+		else if(key == KeyEvent.VK_LEFT && car.getX() >= 0 && started && !lose)
 			left = true;
-		else if(key == KeyEvent.VK_RIGHT && car.getX() + car.getWidth() <= Menu.WIDTH && zaczeto && !lose)
+		else if(key == KeyEvent.VK_RIGHT && car.getX() + car.getWidth() <= Menu.WIDTH && started && !lose)
 			right = true;
 		else if(key == KeyEvent.VK_UP && optionsShowed)
 		{
@@ -311,7 +311,7 @@ public class LevelState extends GameState implements ActionListener
 		
 		for(int i = CARSNUMBER / 2; i < CARSNUMBER; i++) c[i].setPosition(80 + 70 * (i - 3), -1100);
 		
-		zaczeto = lose = optionsShowed = left = right = changeTime = false;
+		started = lose = optionsShowed = left = right = changeTime = false;
 		pointsReceived = wasCollision = ifSoundDelayed = false;
 		one_arrived = firstReceivedPoints = true;
 		
